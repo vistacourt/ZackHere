@@ -9,7 +9,11 @@ brooke=0
 zack1=datetime.today()
 brooke1=datetime.today()
 status=''
-print('Outside loop',datetime.today())
+print()
+print()
+print('Starting system scan -',datetime.today())
+print()
+print('Searching for signals from Zack and Brooke')
 print()
 def loop():
   global zack
@@ -19,16 +23,18 @@ def loop():
   status = 'Gone'
   bstatus = 'Gone'
   while True:
-    print('Zack is',status)
-    if zack!=0:     
+    
+    if zack!=0:
+      print('Zack is',status)
       print (zack)
       print()
     
-    print('Brooke is',bstatus)
-    if brooke!=0:     
+    
+    if brooke!=0:
+      print('Brooke is',bstatus)
       print (brooke)
       print()
-    print() 
+    
     nm.scan('192.168.1.*','62078-62079') 
     for host in nm.all_hosts():
       x=datetime.now().strftime("%A, %B %d - %I:%M:%S %p")
