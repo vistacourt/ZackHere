@@ -10,6 +10,9 @@ iphone2_time=0
 zacks_air_time=0
 brookes_air_time=0
 
+
+
+
 def loop():
     
   global iphone_time
@@ -35,6 +38,7 @@ def loop():
     if iphone2_time!=0:
       print('Zack iPhone - 192.168.1.14 -',iphone2_time)
       print()
+      
     if zacks_air_time!=0:
       print('Zack Air - 192.168.1.17 -',zacks_air_time)
       print()
