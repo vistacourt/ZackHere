@@ -1,8 +1,9 @@
+from flask import Flask
 import nmap
 from datetime import datetime
 from datetime import timedelta
 from time import time
-
+app= Flask(__name__)
 nm = nmap.PortScanner()
 zack=0
 brooke=0
@@ -11,10 +12,11 @@ brooke1=datetime.today()
 status=''
 print()
 print()
-print('Starting system scan -',datetime.today())
+#return('Starting system scan -',datetime.today())
 print()
-print('Searching for signals from Zack and Brooke')
+#return('Searching for signals from Zack and Brooke')
 print()
+@app.route('/')
 def loop():
   global zack
   global zack1
@@ -28,12 +30,14 @@ def loop():
       print('Zack is',status)
       print (zack)
       print()
+      return (status)
     
     
     if brooke!=0:
       print('Brooke is',bstatus)
       print (brooke)
       print()
+      return (status)
     
     nm.scan('192.168.1.*','62078-62079') 
     for host in nm.all_hosts():
@@ -52,3 +56,5 @@ def loop():
         brooke1 = datetime.today()
         bstatus = 'Here'
 loop()
+if __name__ == '__main__':
+    app.run()
