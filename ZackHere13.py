@@ -5,6 +5,14 @@ from datetime import timedelta
 from time import time
 from tkinter import *
 
+
+
+start_time=datetime.now().strftime("%A, %B %d - %I:%M:%S %p")
+
+
+master=Tk()
+master.geometry("400x400")
+
 nm = nmap.PortScanner()
 iphone_time=0
 iphone2_time=0
@@ -15,41 +23,64 @@ brookes_air_time=0
 
 
 
-#global start_time
-start_time=datetime.now().strftime("%A, %B %d - %I:%M:%S %p")
 
-while True:
-    master=Tk()
-    #os.system('cls||clear')
-    
-    
+def feedback():
 
-    Label(master,text='').grid(row=0)
-    print('Starting wifi scan -',start_time)
-    Label(master,text='Starting wifi scan').grid(row=1,column=0)
-    Label(master,text=str(start_time)).grid(row=2,column=0)
-    print('Searching for signals...')
-    Label(master,text='Searching for signals...').grid(row=3,column=0)
+    global nm
+    global iphone_time
+    global iphone2_time
+    global zacks_air_time
+    global brookes_air_time
+    labelfont='("arial",5)'
+    
+    Label(master,text='',).grid(row=0,column=0)
+    Label(master,text=str(start_time),font=labelfont).grid(row=1,column=0,sticky='w')
+    Label(master,text='Starting wifi scan',font=labelfont).grid(row=2,column=0,sticky='w')
+    Label(master,text='Searching for signals...',font=labelfont).grid(row=3,column=0,sticky='w')
     Label(master,text='').grid(row=4,column=0)
+    print('Starting wifi scan -',start_time)
+    print('Searching for signals...')
 
-      
+
     if iphone_time!=0:
+      Label(master,text='Brooke iPhone - 192.168.1.205 -').grid(row=6,column=0,sticky='w')
+      Label(master,text=str(iphone_time)).grid(row=7,column=0,sticky='w')
+      Label(master,text='').grid(row=8,column=0)
       print('Brooke iPhone - 192.168.1.205 -',iphone_time)
       print()
 
     if iphone2_time!=0:
+      Label(master,text='Zack iPhone - 192.168.1.14 -').grid(row=9,column=0,sticky='w')
+      Label(master,text=str(iphone2_time)).grid(row=10,column=0,sticky='w')
+      Label(master,text='').grid(row=11,column=0)
       print('Zack iPhone - 192.168.1.14 -',iphone2_time)
       print()
       
     if zacks_air_time!=0:
-      Label(master,text='Zack Air - 192.168.1.17 -').grid(row=6,column=0)
-      #Label(master,str(zacks_air_time)).grid(row=6,colum=0)
+      Label(master,text='Zack Air - 192.168.1.17 -').grid(row=12,column=0,sticky='w')
+      Label(master,text=str(zacks_air_time)).grid(row=13,column=0,sticky='w')
+      Label(master,text='').grid(row=14,column=0)
       print('Zack Air - 192.168.1.17 -',zacks_air_time)
       print()
 
+
     if brookes_air_time!=0:
+      Label(master,text='Brooke Air-2 - 192.168.1.133 -').grid(row=15,column=0,sticky='w')
+      Label(master,text=str(iphone_time)).grid(row=16,column=0,sticky='w')
+      Label(master,text='').grid(row=17,column=0)
       print('Brooke Air-2 - 192.168.1.133 -',brookes_air_time)
       print()
+
+    master.update()
+    search()
+
+def search():
+
+    global nm
+    global iphone_time
+    global iphone2_time
+    global zacks_air_time
+    global brookes_air_time
     
     nm.scan('192.168.1.*','62078-62079')
 
@@ -67,5 +98,14 @@ while True:
               brookes_air_time = x
       except(KeyError):
         continue
+    print('finished search')
+    print(x)
 
-master.mainloop()        
+while True:
+    feedback()
+
+    
+master.mainloop()       
+
+
+        
